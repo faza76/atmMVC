@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ATMApp">
+  <ClassDiagramComponents>
+    <Class name="Account" package="ATMApp" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="accountNumber" type="int" visibility="private"/>
+        <Field name="pin" type="int" visibility="private"/>
+        <Field name="availableBalance" type="double" visibility="private"/>
+        <Field name="totalBalance" type="double" visibility="private"/>
+        <Field name="point" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="theAccountNumber"/>
+          <Argument type="int" name="thePIN"/>
+          <Argument type="double" name="theAvailableBalance"/>
+          <Argument type="double" name="theTotalBalance"/>
+          <Argument type="int" name="poin"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="validatePIN" returnType="boolean" visibility="public">
+          <Argument type="int" name="userPIN"/>
+        </Method>
+        <Method name="getAvailableBalance" returnType="double" visibility="public"/>
+        <Method name="getTotalBalance" returnType="double" visibility="public"/>
+        <Method name="getPoint" returnType="int" visibility="public"/>
+        <Method name="poinplus" returnType="void" visibility="public">
+          <Argument type="int" name="amount"/>
+        </Method>
+        <Method name="pakaipoin" returnType="void" visibility="public">
+          <Argument type="int" name="amount"/>
+        </Method>
+        <Method name="credit" returnType="void" visibility="public">
+          <Argument type="double" name="amount"/>
+        </Method>
+        <Method name="debit" returnType="void" visibility="public">
+          <Argument type="double" name="amount"/>
+        </Method>
+        <Method name="transfer" returnType="void" visibility="public">
+          <Argument type="double" name="amount"/>
+        </Method>
+        <Method name="getAccountNumber" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ATM" package="ATMApp" visibility="public" xPosition="398.0" yPosition="914.0">
+      <Fields>
+        <Field name="userAuthenticated" type="boolean" visibility="private"/>
+        <Field name="currentAccountNumber" type="int" visibility="private"/>
+        <Field name="screen" type="Screen" visibility="private"/>
+        <Field name="keypad" type="Keypad" visibility="private"/>
+        <Field name="cashDispenser" type="CashDispenser" visibility="private"/>
+        <Field name="depositSlot" type="DepositSlot" visibility="private"/>
+        <Field name="AccountNumberTujuan" type="int" visibility="private"/>
+        <Field name="bankDatabase" type="BankDatabase" visibility="private"/>
+        <Field name="BALANCE_INQUIRY" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="WITHDRAWAL" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="DEPOSIT" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="TRANSFER" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="EXIT" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="run2" returnType="void" visibility="public"/>
+        <Method name="authenticateUser" returnType="void" visibility="private"/>
+        <Method name="searchUser" returnType="void" visibility="private"/>
+        <Method name="performTransactions" returnType="void" visibility="private"/>
+        <Method name="displayMainMenu" returnType="int" visibility="private"/>
+        <Method name="createTransaction" returnType="Transaction" visibility="private">
+          <Argument type="int" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ATMApp" package="ATMApp" visibility="public" xPosition="800.0" yPosition="30.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BalanceInquiry" package="ATMApp" visibility="public" xPosition="478.0" yPosition="432.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="Screen" name="atmScreen"/>
+          <Argument type="BankDatabase" name="atmBankDatabase"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="execute" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="BankDatabase" package="ATMApp" visibility="public" xPosition="1121.0" yPosition="159.0">
+      <Fields>
+        <Field name="accounts" type="Account[]" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getAccount" returnType="Account" visibility="public">
+          <Argument type="int" name="accountNumber"/>
+        </Method>
+        <Method name="authenticateUser" returnType="boolean" visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="int" name="userPIN"/>
+        </Method>
+        <Method name="hasilSearchAccount" returnType="boolean" visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+        </Method>
+        <Method name="getAvailableBalance" returnType="double" visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+        </Method>
+        <Method name="getTotalBalance" returnType="double" visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+        </Method>
+        <Method name="credit" returnType="void" visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="double" name="amount"/>
+        </Method>
+        <Method name="debit" returnType="void" visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="double" name="amount"/>
+        </Method>
+        <Method name="transfer" returnType="void" visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="double" name="amount"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CashDispenser" package="ATMApp" visibility="public" xPosition="1591.0" yPosition="375.0">
+      <Fields>
+        <Field name="INITIAL_COUNT" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="count" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="dispenseCash" returnType="void" visibility="public">
+          <Argument type="int" name="amount"/>
+        </Method>
+        <Method name="isSufficientCashAvailable" returnType="boolean" visibility="public">
+          <Argument type="int" name="amount"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CekPoint" package="ATMApp" visibility="public" xPosition="2039.0" yPosition="30.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Deposit" package="ATMApp" visibility="public" xPosition="2007.0" yPosition="1112.0">
+      <Fields>
+        <Field name="amount" type="double" visibility="private"/>
+        <Field name="keypad" type="Keypad" visibility="private"/>
+        <Field name="depositSlot" type="DepositSlot" visibility="private"/>
+        <Field name="CANCELED" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="Screen" name="atmScreen"/>
+          <Argument type="BankDatabase" name="atmBankDatabase"/>
+          <Argument type="Keypad" name="atmKeypad"/>
+          <Argument type="DepositSlot" name="atmDepositSlot"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="execute" returnType="void" visibility="public"/>
+        <Method name="promptForDepositAmount" returnType="double" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="DepositSlot" package="ATMApp" visibility="public" xPosition="1352.0" yPosition="1259.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="isEnvelopeReceived" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Keypad" package="ATMApp" visibility="public" xPosition="1331.0" yPosition="1063.0">
+      <Fields>
+        <Field name="input" type="Scanner" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInput" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PembayaranAsuransi" package="ATMApp" visibility="public" xPosition="167.0" yPosition="451.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Screen" package="ATMApp" visibility="public" xPosition="531.0" yPosition="627.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="displayMessage" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="displayMessageLine" returnType="void" visibility="public">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="displayDollarAmount" returnType="void" visibility="public">
+          <Argument type="double" name="amount"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Transaction" package="ATMApp" visibility="public" isAbstract="true" xPosition="1201.0" yPosition="731.0">
+      <Fields>
+        <Field name="accountNumber" type="int" visibility="package"/>
+        <Field name="screen" type="Screen" visibility="package"/>
+        <Field name="bankDatabase" type="BankDatabase" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="Screen" name="atmScreen"/>
+          <Argument type="BankDatabase" name="atmBankDatabase"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAccountNumber" returnType="int" visibility="public"/>
+        <Method name="getScreen" returnType="Screen" visibility="public"/>
+        <Method name="getBankDatabase" returnType="BankDatabase" visibility="public"/>
+        <Method name="execute" returnType="void" visibility="public" isAbstract="true"/>
+      </Methods>
+    </Class>
+    <Class name="Transfer" package="ATMApp" visibility="public" xPosition="2233.0" yPosition="767.0">
+      <Fields>
+        <Field name="amount" type="double" visibility="private"/>
+        <Field name="keypad" type="Keypad" visibility="private"/>
+        <Field name="userAuthenticated" type="boolean" visibility="private"/>
+        <Field name="CANCELED" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="Screen" name="atmScreen"/>
+          <Argument type="BankDatabase" name="atmBankDatabase"/>
+          <Argument type="Keypad" name="atmKeypad"/>
+          <Argument type="int" name="AccountNumberTujuan"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="execute" returnType="void" visibility="public"/>
+        <Method name="TransferAmount" returnType="double" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="Withdrawal" package="ATMApp" visibility="public" xPosition="2007.0" yPosition="330.0">
+      <Fields>
+        <Field name="amount" type="int" visibility="private"/>
+        <Field name="keypad" type="Keypad" visibility="private"/>
+        <Field name="cashDispenser" type="CashDispenser" visibility="private"/>
+        <Field name="CANCELED" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="userAccountNumber"/>
+          <Argument type="Screen" name="atmScreen"/>
+          <Argument type="BankDatabase" name="atmBankDatabase"/>
+          <Argument type="Keypad" name="atmKeypad"/>
+          <Argument type="CashDispenser" name="atmCashDispenser"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="execute" returnType="void" visibility="public"/>
+        <Method name="displayMenuOfAmounts" returnType="int" visibility="private"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="keypad" source="ATMApp.ATM" target="ATMApp.Keypad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="screen" source="ATMApp.Transaction" target="ATMApp.Screen" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ATMApp.Transaction" target="ATMApp.Screen" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ATMApp.Transaction" target="ATMApp.BankDatabase" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bankDatabase" source="ATMApp.Transaction" target="ATMApp.BankDatabase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="depositSlot" source="ATMApp.Deposit" target="ATMApp.DepositSlot" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="keypad" source="ATMApp.Transfer" target="ATMApp.Keypad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="keypad" source="ATMApp.Deposit" target="ATMApp.Keypad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ATMApp.Transfer" target="ATMApp.Transaction"/>
+    <HasRelation name="screen" source="ATMApp.ATM" target="ATMApp.Screen" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="keypad" source="ATMApp.Withdrawal" target="ATMApp.Keypad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cashDispenser" source="ATMApp.Withdrawal" target="ATMApp.CashDispenser" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="depositSlot" source="ATMApp.ATM" target="ATMApp.DepositSlot" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ATMApp.Withdrawal" target="ATMApp.Transaction"/>
+    <UseRelation source="ATMApp.BankDatabase" target="ATMApp.Account" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ATMApp.Deposit" target="ATMApp.Transaction"/>
+    <HasRelation name="bankDatabase" source="ATMApp.ATM" target="ATMApp.BankDatabase" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="ATMApp.BalanceInquiry" target="ATMApp.Transaction"/>
+    <UseRelation source="ATMApp.ATM" target="ATMApp.Transaction" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cashDispenser" source="ATMApp.ATM" target="ATMApp.CashDispenser" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
